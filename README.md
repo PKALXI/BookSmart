@@ -1,4 +1,4 @@
-# ICS_AMAZON_RATER
+# BookSmart
 This is the term long ICS project.
 
 ## How this works
