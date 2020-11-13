@@ -1,0 +1,20 @@
+horror,horror
+tradgedy,tradgedy
+western,western
+historical fiction,historical fiction
+adventure,adventure
+fiction,fiction
+romance,romance
+autobiography,autobiography
+science fiction,science fiction
+Horror,Horror
+young adult fiction,young adult fiction
+fantasy,fantasy
+fictional autobiography,fictional autobiography
+political fiction,political fiction
+Mystery,Mystery
+mystery,mystery
+crime fiction,crime fiction
+educational,educational
+tragedy,tragedy
+autobiography,autobiography
