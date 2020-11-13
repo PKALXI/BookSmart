@@ -1,62 +1,79 @@
-import java.io.*;
+//import nessessary libraries
+import java.io.*;//file writing and reading purposes
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * First page to greet you after a successfully login. It also displays a random book and quote of the day
+ * 
  * @author Andreja
  */
 public class mainMenu extends javax.swing.JFrame {
-    private Customer customer;
-    private boolean newInfo; 
+    private Customer customer; //Customer object
+    private boolean newInfo; //Wether the page is being accessed the first time or second time
     
 
     /**
-     * Creates new form Menu
+     * Constructor
+     * @param customer the customer object
+     * @param newInfor wether the page is being accessed the first time or second time
      */
     public mainMenu(Customer customer, boolean newInfo) {
         this.customer = customer;
         this.newInfo = newInfo;
 
+        //Auto-gen method to create components
         initComponents();
         
+        //Opens up the images folder
         File directory = new File("images");
         
+        //The image file number to be displayed on the page
         int fileNumber = 0;
+        //Stores the ranom quote
         String quote = null;
         
+        //If the page is being opened for the first time
         if(newInfo == true){
+            //Declare print writer for writing to file
+            PrintWriter fWriter = null;
+            //Try, catch to initilize printwriter
             try{
-                PrintWriter fWriter = new PrintWriter("data/Quote and Book.txt");
-                
-                try{
-                    quote = randomQuote();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-                
-                //writes the quote into the text file
-                fWriter.println(quote);
-                
-                //Creates an array of all the book image files
-                File fileArr[] = directory.listFiles();
-                
-                //Picks a random number within the length of the array
-                fileNumber = (int) (Math.random() * fileArr.length);
-                
-                //Writes the random number into the text file
-                fWriter.println(fileNumber);
-                
-                fWriter.close();
+                fWriter = new PrintWriter("data/Quote and Book.txt");
             }catch(Exception e){
                 e.printStackTrace();
+            }    
+                
+            //Try, catch to get a random quote and assign it to quote
+            try{
+                quote = randomQuote();
+            }catch (Exception e){
+                e.printStackTrace();
             }
-        }
+                
+            //writes the quote into the text file
+            fWriter.println(quote);
+                
+            //Creates an array of all the book image files
+            File fileArr[] = directory.listFiles();
+                
+            //Picks a random number within the length of the array
+            fileNumber = (int) (Math.random() * fileArr.length);
+                
+            //Writes the random number into the text file
+            fWriter.println(fileNumber);
+            
+            //Closes the printwriter
+            fWriter.close();
+        }//End of if statement
         else{
+            //Open the text file that the data was previously written to
             File myFile = new File("data/Quote and Book.txt");
+            //Declare scanner for reading
             Scanner fileReader = null;
             
+            //try, catch to initalize scanner
             try{
                 fileReader = new Scanner(myFile);
             } catch(Exception e){
@@ -75,36 +92,50 @@ public class mainMenu extends javax.swing.JFrame {
             fileNumber = Integer.parseInt(arr[1]);
         }
         
+        //Displays the random quote to the screen
         jTextArea1.setText(quote);
 
+        //Displays the random book image to the screen
         jLabel1.setIcon(new javax.swing.ImageIcon("images\\" + (fileNumber + 1) + ".jpg"));
 
-        File file = new File("data/books.txt");
-
+        //Opens up file
+        File file = new File("data/books.txt");    
+        //Declares scanner for reading
         Scanner inputFile = null;
 
+        //Try, catch to initialize scanner
         try {
             inputFile = new Scanner(file);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
+        //int count keeps track of the line number the scanner is on
         int count = 0;
+        //String array to store the information on a line in the txt file
         String line[] = null;
+        //Whilte the inputfile has next line
         while (inputFile.hasNextLine()) {
+            //If the current line number equals the random image number (the image is named after it corresponding line number in the txt file)
             if (count == fileNumber) {
+                //Split the information on the line and store it in line []
                 line = inputFile.nextLine().split(",");
                 break;
             }
+            //Add one to count
             count++;
+            //Move the scanner one forward
             inputFile.nextLine();
         }
 
+        //Display the book title to the screen
         jLabel2.setText(line[0]);
+        //Display the book author to the screen
         jLabel3.setText(line[1]);
+        //Display and ad to the screen
         jLabel4.setIcon(new javax.swing.ImageIcon("logos/ad.jpg"));
 
-    }
+    }//End of constructer
     
     
 
@@ -152,7 +183,7 @@ public class mainMenu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(
-                "logos/logo_Menu.png")); // NOI18N
+                "images/logo_Menu.png")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,7 +231,7 @@ public class mainMenu extends javax.swing.JFrame {
         });
             
         System.out.println(new File("logos/logo_Menu.png").exists());
-        jMenu1.setIcon(new javax.swing.ImageIcon("logos/logo_Menu.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Andreja\\Documents\\NetBeansProjects\\BookSmartMav\\logos/logo_Menu.png")); // NOI18N
         jMenuBar1.add(jMenu1);
 
         Recommended.setText("Recommended");
@@ -337,23 +368,35 @@ public class mainMenu extends javax.swing.JFrame {
         
         //Returns a quote based on the random number chose
         return arr[random];
-    }
+    }//End of randomQuote
 
+    /**
+    * Goes to "Recommended" page when button in menu bar is clicked
+    */
     private void RecommendedMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_RecommendedMouseClicked
         new Recommend(this.customer).setVisible(true);
         this.dispose();
     }// GEN-LAST:event_RecommendedMouseClicked
 
+    /**
+    * Goes to "Random" page when button in menu bar is clicked
+    */
     private void RandomMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_RandomMouseClicked
         new RandomBook(this.customer).setVisible(true);
         this.dispose();
     }// GEN-LAST:event_RandomMouseClicked
 
+    /**
+    * Goes to the "Browse" page when button in menu bar is clicked
+    */ 
     private void BrowseMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_BrowseMouseClicked
         new BrowseMenu(customer).setVisible(true);
         this.dispose();
     }// GEN-LAST:event_BrowseMouseClicked
 
+    /**
+    * Goes to "Books You've Rated" page when button in menu bar is clicked
+    */ 
     private void BooksYouveRatedMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_BooksYouveRatedMouseClicked
         try {
             new SeeRated(this.customer).setVisible(true);
@@ -364,6 +407,9 @@ public class mainMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BooksYouveRatedMouseClicked
 
+    /**
+    * Goes to "Add Books" page when button in menu bar is clicked
+    */ 
     private void addBooksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBooksMouseClicked
         try {
             new addBooks(this.customer).setVisible(true);
@@ -373,6 +419,9 @@ public class mainMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_addBooksMouseClicked
 
+    /**
+    * Goes to "Clubs" page when button in menu bar is clicked
+    */ 
     private void friendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_friendsMouseClicked
         try{
             new Friends_Page(this.customer, null).setVisible(true);
@@ -415,4 +464,5 @@ public class mainMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
-}
+    
+}//End of class MainMenu

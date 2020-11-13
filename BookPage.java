@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -20,7 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Displays the book image,title,author, and rating and lets the use rate the book
  * @author Andreja
  */
 public class BookPage extends javax.swing.JFrame {
@@ -28,11 +23,18 @@ public class BookPage extends javax.swing.JFrame {
     /**
      * Creates new form bookPage
      */
-    private String bookTitle;
-    private String bookAuthor;
-    private int lineNumber;
-    private Customer customer;
+    private String bookTitle;//the book title
+    private String bookAuthor;//the book author
+    private int lineNumber;//the line number
+    private Customer customer;//Customer object
     
+    /**
+     * Constructor
+     * @param bookTitleInput takes in the book title
+     * @param authorTitle takes in the author title
+     * @param lineNumber takes in the line number the book is on
+     * @param customer takes in the customer object
+     */ 
     public BookPage(String bookTitleInput, String authorTitle, int lineNumberInput, Customer customer) throws IOException {
         initComponents();
         
@@ -45,12 +47,17 @@ public class BookPage extends javax.swing.JFrame {
         jLabel2.setText(bookTitleInput);
         jLabel3.setText("By: " + authorTitle);
         jLabel4.setIcon(new javax.swing.ImageIcon("stars\\" + getPopularRating(getIntArr())+ ".png"));
-    }
+    }//End of constructer
     
+    /**
+     * Gets all the ratings the book has
+     * @return the arr full of ratings
+     */
     public int [] getIntArr()throws IOException{
         File myFile = new File("stars\\ratings.txt");
         Scanner inputFile = new Scanner(myFile);
         
+        //Finds the file number in the ratings.txt the corresponds to the book file number
         int newLineNumber = 0;
         String temp = null;
         while(inputFile.hasNextLine()){
@@ -62,6 +69,7 @@ public class BookPage extends javax.swing.JFrame {
             }
         }
         
+        //Stores all the ratings the book has in an array
         int intArr[] = null;
         if(!temp.equals("")){
             String arr [] = temp.split(",");
@@ -71,6 +79,7 @@ public class BookPage extends javax.swing.JFrame {
                 intArr[i] = Integer.parseInt(arr[i]);
             }
         }
+        //If it has no ratings, arr is 0
         else{
             intArr = new int [1];
             intArr[0] = 0;
@@ -78,13 +87,19 @@ public class BookPage extends javax.swing.JFrame {
         
         return intArr;
         
-    }
+    }//End of intArr
     
+    /**
+     * Takes in the int array with the ratings and returns an int of the most common rating
+     * @param int [] a the int array with all the ratings
+     * return the most common rating
+     */
     public int getPopularRating(int [] a){
         int count = 1, tempCount;
         int popular = a[0];
         int temp = 0;
         
+        //Sequential search finds the most common rating
         for(int i = 0; i < (a.length - 1); i++){
             temp = a[i];
             tempCount = 0;
@@ -99,12 +114,18 @@ public class BookPage extends javax.swing.JFrame {
             }
         }
         return popular;
-    }
+    }//End of getPopularRating
     
+    /**
+     * Adds the user rating to the books ratings
+     * @param line the line number the book is on
+     * @param value the rating the user gave
+     */
     private void appendToRatings(int line, String value){
         File file = new File("stars\\ratings.txt");
         Scanner in = null;
 
+        //Stores all the lines in ratinggs.txt
         ArrayList <String> lines = new ArrayList<>();
 
         try{
@@ -117,12 +138,14 @@ public class BookPage extends javax.swing.JFrame {
             lines.add(in.nextLine());
         }
 
+        //Adds the user rating to the line number corresponding to the book
         if(lines.get(line-1).equals("")){
             lines.set(line-1, value);
         }else{
             lines.set(line-1, lines.get(line-1) + "," + value);
         }
 
+        //Rewrites the entire ratings file with the new ratings added one
         PrintWriter pw = null;
         try {
             pw = new PrintWriter("stars\\ratings.txt");
@@ -139,6 +162,7 @@ public class BookPage extends javax.swing.JFrame {
         pw.close();
         
         try {
+            //Sets the icon to the average amount of stars
             jLabel4.setIcon(new javax.swing.ImageIcon("stars\\" + getPopularRating(getIntArr())+ ".png"));
         } catch (IOException ex) {
             Logger.getLogger(BookPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -247,6 +271,14 @@ public class BookPage extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt){
+                jTextField1InputFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt){
+                jTextField1InputFocusLost(evt);
+            }
+        });
 
         jButton2.setText("Rate the Book");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +287,7 @@ public class BookPage extends javax.swing.JFrame {
             }
         });
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("logos/logo_Menu.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon("logos/logo_Menu.png")); // NOI18N
         jMenuBar1.add(logo);
 
         recommended.setText("Recommended");
@@ -373,7 +405,7 @@ public class BookPage extends javax.swing.JFrame {
 
     private void mainMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainMenuMouseClicked
         try {
-            new mainMenu(customer, false).setVisible(true);
+            new mainMenu(customer,false).setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(BookPage.class.getName()).log(Level.SEVERE, null, ex);
         }       
@@ -401,51 +433,59 @@ public class BookPage extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(!getRatedBooks(bookTitle)){
-            appendToRatings(lineNumber,jTextField1.getText());
-            addRatedBook(bookTitle);
-        }else{
-            JOptionPane.showMessageDialog(null, "You have already rated this book.","ERROR",JOptionPane.ERROR_MESSAGE);
+    
+    /**
+     * The focus lost action event sets the text of the text field to '1-5" if it is empty
+     * @param evt The focus lost action event
+     */
+    private void jTextField1InputFocusLost(java.awt.event.FocusEvent evt){//GEN-FIRST:event_bookGenreInputFocusLost
+        if (jTextField1.getText().equals("")) {
+            jTextField1.setText("1-5");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bookGenreInputFocusLost
+          
+    /**
+     * The focus gained action event sets the text of the text field to blank if it says '1-5'
+     * @param evt The focus lost action event
+     */
+    private void jTextField1InputFocusGained(java.awt.event.FocusEvent evt){//GEN-FIRST:event_bookGenreInputFocusGained
+        if (jTextField1.getText().equals("1-5")) {
+            jTextField1.setText("");
+        }
+    }//GEN-LAST:event_bookGenreInputFocusGained
 
     /**
-     * @param args the command line arguments
+     * The button pressed action event takes in the rating the user inputted in the text field
+     * @param evt The mouse action event
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new BookPage(bookTitle,bookAuthor).setVisible(true);
-            }
-        });
-    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //If the rating is a number
+        if(jTextField1.getText().matches("[0-9]+")){
+            //If the rating is equal to or less than 5
+            if(Integer.parseInt(jTextField1.getText()) <= 5){
+                //If you haven't already rated the book
+                if(!getRatedBooks(bookTitle)){
+                    //Add the rating to the databse
+                    appendToRatings(lineNumber,jTextField1.getText());
+                    addRatedBook(bookTitle);
+                //Else display error
+                }//End of if statement
+                else{
+                    JOptionPane.showMessageDialog(null, "You have already rated this book.","ERROR",JOptionPane.ERROR_MESSAGE);
+                }//end of else
+            }//End of id statement
+            //Else display error
+            else{
+                JOptionPane.showMessageDialog(null, "Wrong Input. Please Input Again","ERROR",JOptionPane.ERROR_MESSAGE);
+                jTextField1.setText("1-5");
+            }//End of Else
+        }//End of if statement
+        //Else display error
+        else{
+            JOptionPane.showMessageDialog(null, "Wrong Input. Please Input Again","ERROR",JOptionPane.ERROR_MESSAGE);
+            jTextField1.setText("1-5");
+        }//End of else
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu addBooks;
@@ -464,4 +504,4 @@ public class BookPage extends javax.swing.JFrame {
     private javax.swing.JMenu random;
     private javax.swing.JMenu recommended;
     // End of variables declaration//GEN-END:variables
-}
+}//End of class BookPage
