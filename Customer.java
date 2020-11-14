@@ -24,6 +24,7 @@ public class Customer {
      * Constructor method
      */
     public Customer(String firstName, String email, String lastName, String password, String username, SurveyData surveyData){
+        //set the attributes to the corresponding parameters
         this.firstName = firstName;
         this.email = email;
         this.lastName = lastName;
@@ -33,9 +34,10 @@ public class Customer {
     }//end of constructor
 
     /**
-     * Constructor method to copy customer objects
+     * Constructor method to perfor a deep copy customer objects
      */
     public Customer(Customer customer){
+        //copy all attributes of object passed in, to this object attributes
         this.email = customer.email;
         this.firstName = customer.firstName;
         this.lastName = customer.lastName;
