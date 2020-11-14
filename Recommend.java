@@ -83,15 +83,15 @@ public class Recommend extends javax.swing.JFrame {
 
         cover1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cover1.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+                "logos/logo_Menu.png")); // NOI18N
 
         cover3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cover3.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+                "logos/logo_Menu.png")); // NOI18N
 
         cover2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cover2.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+                "logos/ogo_Menu.png")); // NOI18N
 
         title1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,7 +142,7 @@ public class Recommend extends javax.swing.JFrame {
         });
 
         logo.setIcon(new javax.swing.ImageIcon(
-                "C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+                "logos/logo_Menu.png")); // NOI18N
         menuBar.add(logo);
 
         randomMenu.setText("Random Book");
@@ -668,7 +668,7 @@ public class Recommend extends javax.swing.JFrame {
      */
     public void algorithm(){
         //This is the file containing all the genres we support
-        File file = new File("data/genres_new.txt");
+        File file = new File("data/genres.txt");
 
         //Scanner to read file
         Scanner reader = null;

@@ -86,13 +86,13 @@ public class RandomBook extends javax.swing.JFrame {
         title.setText("Random Books You May Like!");
 
         bookCover3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bookCover3.setIcon(new javax.swing.ImageIcon("C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+        bookCover3.setIcon(new javax.swing.ImageIcon("logos/logo_Menu.png")); // NOI18N
 
         bookCover1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bookCover1.setIcon(new javax.swing.ImageIcon("C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+        bookCover1.setIcon(new javax.swing.ImageIcon("logos/logo_Menu.png")); // NOI18N
 
         bookCover2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bookCover2.setIcon(new javax.swing.ImageIcon("C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+        bookCover2.setIcon(new javax.swing.ImageIcon("logos/logo_Menu.png")); // NOI18N
 
         title2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         title2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -140,7 +140,7 @@ public class RandomBook extends javax.swing.JFrame {
             }
         });
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\kalsi\\Documents\\NetBeansProjects\\Booksmart_App\\logo_Menu.png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon("logos/logo_Menu.png")); // NOI18N
         jMenuBar1.add(logo);
 
         recMenu.setText("Recommended");

@@ -938,13 +938,6 @@ public class addBooks extends javax.swing.JFrame {
             return false;
         }
     }//End of fileExtension
-    
-  //  private String converFilePath(String filePath){
-        
-        
-        
-   // }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton authorInputButton;

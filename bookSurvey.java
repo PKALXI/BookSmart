@@ -92,7 +92,7 @@ public class bookSurvey extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("images/logo2.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("logos/logo2.png"))); // NOI18N
 
         jButton2.setText("Skip");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

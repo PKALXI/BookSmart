@@ -8,7 +8,7 @@ javac Friends_Page.java
 javac HelpPage.java
 javac LoginPage.java
 javac Main.java
-javac manuMenu.java
+javac mainMenu.java
 javac RandomBook.java
 javac Recommend.java
 javac Register.java

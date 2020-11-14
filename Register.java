@@ -159,7 +159,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("images/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("logos/logo.png"))); // NOI18N
         logo.setText("Place holder");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,7 +268,7 @@ public class Register extends javax.swing.JFrame {
                 //Add the fields the problematic fields to String errors
                 if (s.equals(fields[i].getText())) {
                     //add the appropriate JTextField name to the String errors
-                    errors += defaults[i];
+                    errors += defaults[i] + "\n";
                 }//end if
 
                 //increment i

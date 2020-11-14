@@ -60,7 +60,7 @@ public class HelpPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
         jLabel1.setText("Help Page");
 
-        DoNotUse.setIcon(new javax.swing.ImageIcon(getClass().getResource("logo_Menu.png"))); // NOI18N
+        DoNotUse.setIcon(new javax.swing.ImageIcon(getClass().getResource("logos/logo_Menu.png"))); // NOI18N
         jMenuBar1.add(DoNotUse);
 
         BooksRated.setText("Books you've rated");

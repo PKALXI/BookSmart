@@ -183,7 +183,7 @@ public class mainMenu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(
-                "images/logo_Menu.png")); // NOI18N
+                "logos/logo_Menu.png")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -231,7 +231,7 @@ public class mainMenu extends javax.swing.JFrame {
         });
             
         System.out.println(new File("logos/logo_Menu.png").exists());
-        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Andreja\\Documents\\NetBeansProjects\\BookSmartMav\\logos/logo_Menu.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon("logos/logo_Menu.png")); // NOI18N
         jMenuBar1.add(jMenu1);
 
         Recommended.setText("Recommended");

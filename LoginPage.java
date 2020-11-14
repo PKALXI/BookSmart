@@ -84,7 +84,7 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("images/Real Logo.png"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("logos/Real Logo.png"))); // NOI18N
         Logo.setText("jLabel1");
 
         jToggleButton1.setText("Enter");

@@ -1,15 +1,3 @@
-action,action
-conflict,action
-fight,action
-fighting,action
-battle,action
-combat,action
-contest,action
-encounter,action
-engagement,action
-fray,action
-skirmish,action
-warfare,action
 fantasy,fantasy
 delusion,fantasy
 fancy,fantasy
