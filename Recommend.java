@@ -644,7 +644,7 @@ public class Recommend extends javax.swing.JFrame {
      */
     private boolean isDataPresent(){
         //String [] to store the diectories this file needs
-        String [] dirs = {"data/genres.txt", "data/books.txt", "images"};
+        String [] dirs = {"data/genres.txt", "data/books.txt", "images", "stars/" + this.customer.getUsername() + "-rated.txt"};
 
         //for loop to traverse through dirs
         for(String dir : dirs){

@@ -8,6 +8,7 @@
 */
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -15,13 +16,38 @@ import javax.swing.JTextField;
 import java.io.File;
 import java.util.Scanner;
 
-
 public class Register extends javax.swing.JFrame {
 
     /**
      * Creates new form Register
      */
     public Register() {
+        // Check if files needed exist
+        // if it is not redirect
+        if (!isDataPresent()) {
+            // create folder UserData just in case
+            new File("UserData").mkdir();
+
+            // create Users.txt & SurveyData.txt
+            try {
+                FileWriter fw = new FileWriter("UserData/Users.txt", true);
+                fw.close();
+
+                FileWriter pw = new FileWriter("UserData/SurveyData.txt", true);
+                pw.close();
+            } catch (Exception e) {
+                //if no match was found just output a dialog box saying so
+                JOptionPane.showMessageDialog(null, "Internal Error\n You will be redirected to previous screen", "Error",
+                JOptionPane.ERROR_MESSAGE);
+
+                //open firstScreen page
+                new firstScreen().setVisible(true);
+
+                //dispose this window
+                this.dispose();
+            }//end of try catch
+        }//end if
+
         //run Netbeans auto-generated code
         initComponents();
 
@@ -197,6 +223,26 @@ public class Register extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * This method checks if all the files need for this program to work exist.
+     */
+    private boolean isDataPresent(){
+        //String [] to store the diectories this file needs
+        String [] dirs = {"UserData/Users.txt", "UserData/SurveyData.txt"};
+
+        //for loop to traverse through dirs
+        for(String dir : dirs){
+            //check if the file path doesn't exist
+            if(!(new File(dir).exists())){
+                //return false
+                return false;
+            }//end if
+        }//end for loop
+
+        //return true
+        return true;
+    }//end isDataPresent
 
     /**
      * This method is peformed when the register button is clicked
