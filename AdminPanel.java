@@ -294,7 +294,7 @@ public class AdminPanel extends javax.swing.JFrame {
                         String[] cmd = {
                          "python",
                          "delete_pi.py",
-                            "images/"+index+".png",
+                            index+".png",
                              };
                         Runtime.getRuntime().exec(cmd);    
                     }//else for checking index
